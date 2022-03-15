@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'Animation/FadeAnimation.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final formKey = GlobalKey<FormState>();
+  var emailcontroller = TextEditingController();
+  var passwordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,8 +64,8 @@ class HomePage extends StatelessWidget {
                             height: 90,
                           ),
                           FadeAnimation(
-                              1.4,
-                              Container(
+                            1.4,
+                            Container(
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(10),
@@ -68,41 +76,64 @@ class HomePage extends StatelessWidget {
                                           blurRadius: 20,
                                           offset: Offset(0, 10))
                                     ]),
-                                child: Column(
-                                  children: <Widget>[
-                                    Container(
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  color: Color.fromARGB(
-                                                      255, 233, 229, 229)))),
-                                      child: TextField(
-                                        decoration: InputDecoration(
-                                            hintText: "Email or Phone number",
+                                child: Form(
+                                  key: formKey,
+                                  child: Column(
+                                    children: <Widget>[
+                                      Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                bottom: BorderSide(
+                                                    color: Color.fromARGB(
+                                                        255, 233, 229, 229)))),
+                                        child: TextFormField(
+                                          controller: emailcontroller,
+                                          decoration: InputDecoration(
+                                            hintText: "Email-ID",
                                             hintStyle:
                                                 TextStyle(color: Colors.grey),
-                                            border: InputBorder.none),
+                                            border: InputBorder.none,
+                                          ),
+                                          validator: (value) {
+                                            if (value!.trim().isEmpty ||
+                                                !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                                    .hasMatch(value)) {
+                                              return "Invalid email";
+                                            } else {
+                                              return null;
+                                            }
+                                          },
+                                        ),
                                       ),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  color: Color.fromARGB(
-                                                      255, 233, 229, 229)))),
-                                      child: TextField(
-                                        decoration: InputDecoration(
-                                            hintText: "Password",
-                                            hintStyle:
-                                                TextStyle(color: Colors.grey),
-                                            border: InputBorder.none),
+                                      Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                bottom: BorderSide(
+                                                    color: Color.fromARGB(
+                                                        255, 233, 229, 229)))),
+                                        child: TextFormField(
+                                            controller: passwordcontroller,
+                                            decoration: InputDecoration(
+                                                hintText: "Password",
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey),
+                                                border: InputBorder.none),
+                                            validator: (value) {
+                                              if (value!.trim().isEmpty ||
+                                                  !RegExp(r'.{8,}$')
+                                                      .hasMatch(value)) {
+                                                return "Invalid password";
+                                              } else {
+                                                return null;
+                                              }
+                                            }),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              )),
+                                    ],
+                                  ),
+                                )),
+                          ),
                           SizedBox(
                             height: 40,
                           ),
@@ -125,13 +156,21 @@ class HomePage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(50),
                                     color: Colors.orange[900]),
                                 child: Center(
+                                    child: TextButton(
                                   child: Text(
                                     "Login",
                                     style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
+                                        fontSize: 20, color: Colors.white),
                                   ),
-                                ),
+                                  onPressed: () {
+                                    if (formKey.currentState!.validate()) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              content:
+                                                  Text("Successfully login")));
+                                    }
+                                  },
+                                )),
                               )),
                           SizedBox(
                             height: 50,
