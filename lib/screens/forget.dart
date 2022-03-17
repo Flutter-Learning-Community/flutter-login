@@ -176,24 +176,28 @@ class _forgetpageState extends State<forgetpage> with TickerProviderStateMixin {
                                     child: Form(
                                       key: formKey,
                                       child: TextFormField(
-                                          controller: emailcontroller,
-                                          cursorColor: Colors.white,
-                                          decoration: InputDecoration(
-                                            border: InputBorder.none,
-                                            prefixIcon: Icon(
-                                                Icons.account_circle_outlined),
-                                            iconColor: Colors.white,
-                                            labelText: 'User Name',
-                                            labelStyle:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                          validator: (value) {
-                                            if (value!.isEmpty) {
-                                              return "Please enter the name";
-                                            } else {
-                                              return null;
-                                            }
-                                          }),
+                                        controller: emailcontroller,
+                                        cursorColor: Colors.white,
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          prefixIcon:
+                                              Icon(Icons.email_outlined),
+                                          iconColor: Colors.white,
+                                          labelText: 'email-id',
+                                          labelStyle:
+                                              TextStyle(color: Colors.white),
+                                        ),
+                                        validator: (value) {
+                                          print(value);
+                                          if (value!.trim().isEmpty ||
+                                              !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                                  .hasMatch(value)) {
+                                            return "Invalid email";
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                      ),
                                     )))),
                         Padding(
                             padding: const EdgeInsets.only(
@@ -211,11 +215,7 @@ class _forgetpageState extends State<forgetpage> with TickerProviderStateMixin {
                                           Radius.circular(16.0))),
                                   onPressed: () {
                                     if (formKey.currentState!.validate()) ;
-                                    // Navigator.push(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //         builder: (context) =>
-                                    //             loginscreen()));
+                                    //
                                   }),
                             )),
                       ]),
