@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loginscreen/main.dart';
 import 'package:loginscreen/screens/animation.dart';
+import 'package:loginscreen/screens/forget.dart';
 import 'dart:async';
 import 'dart:ui';
 
@@ -265,7 +266,13 @@ class _loginscreenState extends State<loginscreen>
                         style: TextButton.styleFrom(
                           textStyle: TextStyle(fontSize: 13),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => forgetpage()),
+                          );
+                        },
                         child: Text(
                           'Forget Passsword?',
                           // textAlign: TextAlign.start,
