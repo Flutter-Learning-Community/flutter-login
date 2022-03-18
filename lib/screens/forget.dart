@@ -161,44 +161,43 @@ class _forgetpageState extends State<forgetpage> with TickerProviderStateMixin {
                           ),
                         ),
                         Padding(
-                            padding:
-                                EdgeInsets.only(top: 200, left: 35, right: 35),
-                            child: Container(
-                                decoration: BoxDecoration(
-                                  color: Color.fromARGB(64, 108, 153, 235),
-                                  borderRadius: new BorderRadius.circular(20.0),
+                          padding:
+                              EdgeInsets.only(top: 200, left: 35, right: 35),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(64, 108, 153, 235),
+                              borderRadius: new BorderRadius.circular(20.0),
+                            ),
+                            child: Padding(
+                                padding: EdgeInsets.only(
+                                  left: 15,
+                                  right: 15,
                                 ),
-                                child: Padding(
-                                    padding: EdgeInsets.only(
-                                      left: 15,
-                                      right: 15,
-                                    ),
-                                    child: Form(
-                                      key: formKey,
-                                      child: TextFormField(
-                                        controller: emailcontroller,
-                                        cursorColor: Colors.white,
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          prefixIcon:
-                                              Icon(Icons.email_outlined),
-                                          iconColor: Colors.white,
-                                          labelText: 'email-id',
-                                          labelStyle:
-                                              TextStyle(color: Colors.white),
-                                        ),
-                                        validator: (value) {
-                                          print(value);
-                                          if (value!.trim().isEmpty ||
-                                              !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                                  .hasMatch(value)) {
-                                            return "Invalid email";
-                                          } else {
-                                            return null;
-                                          }
-                                        },
+                                child: Form(
+                                    key: formKey,
+                                    child: TextFormField(
+                                      validator: (value) {
+                                        if (value!.trim().isEmpty ||
+                                            !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                                .hasMatch(value)) {
+                                          return "Invalid email";
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      controller: emailcontroller,
+                                      cursorColor: Colors.black,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        prefixIcon: Icon(Icons.email_outlined),
+                                        iconColor: Colors.white,
+                                        labelText: 'email-id',
+                                        labelStyle:
+                                            TextStyle(color: Colors.black),
                                       ),
-                                    )))),
+                                    ))),
+                          ),
+                        ),
                         Padding(
                             padding: const EdgeInsets.only(
                                 top: 150, right: 116, left: 116),
@@ -246,7 +245,7 @@ class _forgetpageState extends State<forgetpage> with TickerProviderStateMixin {
             ),
             child: Text(
               string,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
             ),
           ),
         ),
