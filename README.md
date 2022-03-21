@@ -1,8 +1,2 @@
-# Confirm password page
 
-## simple animation package
-
-https://pub.dev/packages/simple_animations
-
-## Git hub link
-https://github.com/Flutter-Learning-Community/flutter-login/tree/confirm_password_page
+![Screenshot from 2022-03-15 13-48-49](https://user-images.githubusercontent.com/95606753/158336260-dc966c63-9db0-4267-8708-8fdebebf119c.png
